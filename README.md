@@ -10,7 +10,7 @@ Left: Nanda et al.'s setup on $a + b \bmod 113$, rerun with the code in this rep
 
 ## Why coordinates
 
-If each point of $E(\mathbb{F}_p)$ is given to the network as its own token, the task is addition in a finite abelian group with the tokens relabelled. The embedding is a lookup table, so the labels carry no information, and the experiment is that of Nanda et al. (for $\mathbb{Z}/113$) or Chughtai et al. (2023) (for $C_n$) again. The task differs only when the network is given the coordinates of the points.
+If each point of $E(\mathbb{F}_p)$ is given to the network as its own token, the task is addition in a finite abelian group with the tokens relabelled. The embedding is a lookup table, so basically the experiment reduces to that of Nanda et al. (for $\mathbb{Z}/113$) or Chughtai et al. (2023) (for $C_n$) again. The task differs only when the network is given the coordinates of the points.
 
 ## Setup
 
@@ -67,7 +67,7 @@ Not tested: longer training, a larger training fraction, other seeds, other curv
 
 The measures follow Nanda et al.'s analysis notebook, with logits taken at the last position and restricted to the first 113 outputs.
 
-- **Gini coefficients** (Hurley and Rickard 2009) of the norms of the 113 Fourier components of the embedding and of the neuron-logit map $W_L = W_U^\top W_{out}$ (Fourier transform over the output). Nanda et al. do not publish the code for these; this is the definition in their Section 5.1. For the elliptic-curve model the embedding is indexed by field elements, not by group elements, so the Fourier transform over the group does not apply to it directly. The figure uses the matrix whose column $n$ is the concatenation $(W_E[x(nG)], W_E[y(nG)])$, Fourier transformed over $n$. Because $x(-P) = x(P)$, the $x$ half has no sine components; this is why its Gini coefficient is 0.16 at initialisation, against 0.04 for the baseline.
+- We provide the **Gini coefficients** of the norms of the 113 Fourier components of the embedding and of the neuron-logit map $W_L = W_U^\top W_{out}$ (Fourier transform over the output). Nanda et al. do not publish the code for these; this is the definition in their Section 5.1. For the elliptic-curve model the embedding is indexed by field elements, not by group elements, so the Fourier transform over the group does not apply to it directly. The figure uses the matrix whose column $n$ is the concatenation $(W_E[x(nG)], W_E[y(nG)])$, Fourier transformed over $n$. Because $x(-P) = x(P)$, the $x$ half has no sine components; this is why its Gini coefficient is 0.16 at initialisation, against 0.04 for the baseline.
 - **Excluded and restricted loss** are not shown. They depend on the key frequencies, which Nanda et al. read off the final model. For the elliptic-curve model, which has not grokked, their procedure returns 34 frequencies, each explaining 4–12% of the activation of its neurons, and the resulting restricted loss (0.01) does not indicate a working algorithm. `progress_measures.py` still computes both.
 
 ## What a solution would look like
@@ -80,15 +80,7 @@ Since $-(x, y) = (x, -y)$ and $\chi_k(-P) = \overline{\chi_k(P)}$, the real part
 
 ## Question
 
-What architecture would grok this task? Two candidates I have not tried:
-
-1. A separate point encoder: a small network from the two tokens $(x, y)$ to one vector per point, followed by Nanda et al.'s model on the two point vectors. This separates learning the representation of a point from learning the group law.
-2. More depth: a second layer, so that $x$ and $y$ can be combined before $P$ and $Q$ are combined.
-
-## Further notes
-
-- Test accuracy during memorisation is about 0.08 in both runs, nine times chance ($1/113$). I have not found the reason. For 30% of the test pairs $(a, b)$, the pair $(b, a)$ is in the training set; whether the model uses this is not checked.
-- 113 is an anomalous prime for 61a1: $\#E(\mathbb{F}_p) = p$. The discrete logarithm on such a curve can be computed in polynomial time by a $p$-adic method (Smart 1999). I do not expect a network to find that method, but it means this curve is not a generic one.
+What architecture would grok this task? I'm not sure, and would welcome input here.
 
 ## Reproducing
 
