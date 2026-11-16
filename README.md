@@ -14,7 +14,7 @@ If each point of $E(\mathbb{F}_p)$ is given to the network as its own token, the
 
 ## Setup
 
-**The curve.** $E$ is the curve [61a1](https://www.lmfdb.org/EllipticCurve/Q/61/a/1). It has good reduction at 113 and $a_{113} = 1$, so $`\#E(\mathbb{F}_{113}) = 113 + 1 - a_{113} = 113`$, and $E(\mathbb{F}_{113}) \cong \mathbb{Z}/113$. Over $\mathbb{F}_{113}$ the code uses the short Weierstrass model
+**The curve.** $E$ is the curve [61a1](https://www.lmfdb.org/EllipticCurve/Q/61/a/1). It has good reduction at 113 and $a_{113} = 1$, so $`\#E(\mathbb{F}_{113}) = 113 + 1 - a_{113} = 113`$, and $`E(\mathbb{F}_{113}) \cong \mathbb{Z}/113`$. Over $`\mathbb{F}_{113}`$ the code uses the short Weierstrass model
 
 $$y^2 = x^3 + 93x + 20,$$
 
