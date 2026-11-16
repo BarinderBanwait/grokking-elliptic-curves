@@ -109,5 +109,3 @@ Checkpoints are written to `checkpoints/` every 100 epochs and are not included 
 
 - N. Nanda, L. Chan, T. Lieberum, J. Smith, J. Steinhardt. *Progress measures for grokking via mechanistic interpretability.* ICLR 2023. [arXiv:2301.05217](https://arxiv.org/abs/2301.05217). Code: [progress-measures-paper](https://github.com/mechanistic-interpretability-grokking/progress-measures-paper).
 - B. Chughtai, L. Chan, N. Nanda. *A toy model of universality: reverse engineering how networks learn group operations.* ICML 2023. [arXiv:2302.03025](https://arxiv.org/abs/2302.03025).
-- N. Hurley, S. Rickard. *Comparing measures of sparsity.* IEEE Transactions on Information Theory 55 (2009). [arXiv:0811.4706](https://arxiv.org/abs/0811.4706).
-- N. P. Smart. *The discrete logarithm problem on elliptic curves of trace one.* Journal of Cryptology 12 (1999).
